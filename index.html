@@ -1,60 +1,269 @@
 <!DOCTYPE html><html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ringkasan Filsafat Lengkap</title>
-<style>
-body{font-family:Arial,Helvetica,sans-serif;margin:0;background:#f5f5f5;line-height:1.7}
-header{background:#222;color:#fff;padding:20px;text-align:center}
-main{max-width:900px;margin:20px auto;background:#fff;padding:25px;border-radius:12px}
-h2{color:#333;margin-top:30px}
-h3{color:#444}
-footer{text-align:center;padding:15px;color:#555}
-.keyword{background:#eee;padding:4px 7px;border-radius:6px;display:inline-block;margin:3px}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog Artikel Saya</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background: #efefef;
+      color: #111;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    body.dark {
+      background: #111317;
+      color: #f3f3f3;
+    }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #ffffff;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+    body.dark .topbar {
+      background: #181b20;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .topbar-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 26px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      font-size: 26px;
+      font-weight: 800;
+      font-family: Arial, Helvetica, sans-serif;
+      letter-spacing: -0.5px;
+    }
+    body.dark .brand {
+      color: #fff;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .icon-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.12);
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    body.dark .icon-btn {
+      background: #222831;
+      color: #fff;
+      border-color: rgba(255,255,255,0.12);
+    }
+    .menu-lines {
+      width: 20px;
+    }
+    .menu-lines span {
+      display: block;
+      height: 2px;
+      background: #111;
+      margin: 4px 0;
+    }
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 18px 12px 42px;
+    }
+    .card {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    body.dark .card {
+      background: #181b20;
+      border-color: rgba(255,255,255,0.08);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+    }
+    .hero {
+      margin: 18px 18px 0;
+      height: 200px;
+      background: linear-gradient(135deg, #b79b6b 0%, #eadfca 42%, #7a7a7a 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.05), rgba(0,0,0,0.06));
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 90px;
+      height: 90px;
+      border: 14px solid rgba(255,255,255,0.88);
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -40%) rotate(45deg);
+    }
+    .content {
+      padding: 42px 18px 56px;
+    }
+    .badge {
+      display: inline-block;
+      background: #5862f2;
+      color: #fff;
+      padding: 12px 22px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%);
+    }
+    h1 {
+      margin: 28px 0 0;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 64px;
+      line-height: 0.95;
+      text-transform: uppercase;
+      letter-spacing: -2px;
+    }
+    h2 {
+      margin: 10px 0 0;
+      font-size: 32px;
+      color: #17345c;
+      line-height: 1.15;
+    }
+    .meta {
+      margin-top: 22px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 16px;
+      color: #222;
+      line-height: 1.8;
+      transition: color 0.3s ease;
+    }
+    body.dark .meta {
+      color: rgba(255,255,255,0.8);
+    }
+    .meta .dot {
+      color: #5862f2;
+      padding: 0 8px;
+      font-weight: 700;
+    }
+    .article {
+      margin-top: 34px;
+      color: #1f3554;
+      font-size: 21px;
+      line-height: 2;
+      transition: color 0.3s ease;
+    }
+    body.dark .article {
+      color: #d6e2f2;
+    }
+    .article p {
+      margin: 0 0 28px;
+    }
+    .article .author {
+      font-size: 22px;
+      line-height: 1.8;
+    }
+    .article .subtitle {
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1.5;
+      color: #17345c;
+    }
+    body.dark .article .subtitle,
+    body.dark h2 {
+      color: #9fc3ff;
+    }
+    @media (max-width: 768px) {
+      .brand { font-size: 28px; }
+      .topbar-inner { padding: 22px 16px; }
+      .hero { height: 170px; margin: 16px 16px 0; }
+      .content { padding: 34px 16px 48px; }
+      .badge { font-size: 16px; padding: 10px 18px; }
+      h1 { font-size: 42px; letter-spacing: -1px; }
+      h2 { font-size: 24px; }
+      .meta { font-size: 14px; }
+      .article { font-size: 18px; line-height: 1.95; }
+      .article .author { font-size: 20px; }
+      .article .subtitle { font-size: 24px; }
+    }
+  </style>
 </head>
 <body>
-<header>
-<h1>Ringkasan Cabang Filsafat</h1>
-<p>Penulis: Muhammad Al fatih</p>
-</header><main>
-<h2>1. Ontologi</h2>
-<p><b>Ontologi</b> adalah cabang filsafat yang membahas tentang hakikat keberadaan, realitas, dan apa saja yang dianggap benar-benar ada. Pertanyaan ontologis biasanya sangat mendasar, seperti: apa hakikat manusia, apakah realitas hanya materi, apakah ide juga termasuk realitas, dan apakah ada sesuatu di luar pengalaman indera. Ontologi sering disebut bagian dari metafisika karena sama-sama membahas realitas terdalam.</p><p>Dalam sejarah filsafat, ontologi berkembang karena manusia selalu ingin memahami apa yang sebenarnya ada di balik dunia yang terlihat. Filsuf Yunani kuno seperti Plato dan Aristoteles sudah membahas realitas ide dan realitas fisik. Hingga sekarang, ontologi masih relevan dalam ilmu pengetahuan, agama, dan filsafat ilmu.</p><h3>Aliran Ontologi</h3>
-<ul>
-<li><b>Materialisme:</b> Menganggap realitas utama adalah materi. Segala sesuatu, termasuk pikiran dan kesadaran, dianggap berasal dari proses fisik. <br>Contoh sederhana: seseorang percaya bahwa kebahagiaan muncul dari kondisi otak dan tubuh, bukan dari sesuatu spiritual.</li>
-<li><b>Idealisme:</b> Menganggap ide, kesadaran, atau pikiran lebih fundamental daripada materi. Realitas fisik dianggap bergantung pada kesadaran. <br>Contoh: nilai keadilan atau kebenaran dianggap lebih penting daripada benda fisik.</li>
-<li><b>Dualisme:</b> Menyatakan realitas terdiri dari dua substansi utama: materi dan mental. <br>Contoh: tubuh manusia fisik tetapi pikiran dianggap non-fisik.</li>
-<li><b>Pluralisme:</b> Menyatakan realitas terdiri dari banyak unsur, bukan satu atau dua saja. <br>Contoh: alam semesta terdiri dari berbagai dimensi realitas berbeda.</li>
-</ul><h2>2. Epistemologi</h2>
-<p><b>Epistemologi</b> adalah cabang filsafat yang membahas pengetahuan: bagaimana pengetahuan diperoleh, bagaimana kebenaran diuji, dan apa batas pengetahuan manusia. Epistemologi sangat penting karena semua ilmu pengetahuan bergantung pada cara manusia mengetahui sesuatu.</p><p>Pertanyaan epistemologis misalnya: apakah indera bisa dipercaya sepenuhnya? Apakah logika selalu benar? Apakah kebenaran bersifat absolut atau relatif? Pembahasan ini membantu manusia tidak mudah menerima informasi tanpa kritik.</p><h3>Aliran Epistemologi</h3>
-<ul>
-<li><b>Empirisme:</b> Pengetahuan berasal dari pengalaman indera. <br>Contoh: seseorang tahu gula manis karena pernah mencicipinya.</li>
-<li><b>Rasionalisme:</b> Pengetahuan berasal dari akal dan logika. <br>Contoh: matematika dipahami lewat nalar tanpa eksperimen langsung.</li>
-<li><b>Kritisisme:</b> Gabungan empirisme dan rasionalisme; akal dan pengalaman saling melengkapi. <br>Contoh: ilmu sains butuh teori rasional dan eksperimen empiris.</li>
-<li><b>Skeptisisme:</b> Meragukan kemampuan manusia mencapai kebenaran mutlak. <br>Contoh: mempertanyakan apakah persepsi kita benar-benar objektif.</li>
-<li><b>Pragmatisme:</b> Kebenaran diukur dari manfaat praktisnya. <br>Contoh: teori dianggap benar jika berhasil diterapkan.</li>
-</ul><h2>3. Aksiologi</h2>
-<p><b>Aksiologi</b> membahas nilai, baik nilai moral maupun nilai keindahan. Cabang ini penting karena manusia tidak hanya ingin tahu apa yang benar, tetapi juga apa yang baik dan indah. Aksiologi berhubungan erat dengan etika, estetika, dan filsafat nilai.</p><p>Dalam kehidupan sehari-hari, aksiologi terlihat dalam keputusan moral, apresiasi seni, dan pertimbangan manfaat ilmu. Tanpa aksiologi, pengetahuan bisa kehilangan arah karena tidak memiliki nilai moral.</p><h3>Aliran Aksiologi</h3>
-<ul>
-<li><b>Etika:</b> Membahas nilai moral dan perilaku baik-buruk. <br>Contoh: kejujuran dianggap tindakan baik.</li>
-<li><b>Estetika:</b> Membahas nilai keindahan. <br>Contoh: seni lukis dinilai dari harmoni warna.</li>
-<li><b>Utilitarianisme:</b> Nilai berdasarkan manfaat terbesar bagi banyak orang. <br>Contoh: kebijakan publik dinilai dari dampaknya.</li>
-<li><b>Pragmatisme Nilai:</b> Sesuatu dianggap bernilai jika berguna. <br>Contoh: ilmu teknologi dihargai karena memudahkan hidup.</li>
-</ul><h2>Istilah-istilah Filsafat (Halaman Akhir)</h2>
-<p>
-<span class="keyword">Metodologi</span> : cara sistematis memperoleh pengetahuan.<br>
-<span class="keyword">Pedagogis</span> : pendekatan pendidikan dan pembelajaran.<br>
-<span class="keyword">Logika</span> : aturan berpikir benar dan konsisten.<br>
-<span class="keyword">Metafisika</span> : kajian realitas terdalam di balik fisik.<br>
-<span class="keyword">Paradigma</span> : kerangka berpikir atau sudut pandang ilmiah.<br>
-<span class="keyword">Fenomenologi</span> : studi pengalaman sadar manusia.<br>
-<span class="keyword">Hermeneutika</span> : teori penafsiran makna teks atau realitas.<br>
-<span class="keyword">Dialektika</span> : metode berpikir melalui pertentangan ide.<br>
-<span class="keyword">Eksistensialisme</span> : filsafat tentang makna keberadaan manusia.<br>
-<span class="keyword">Determinisme</span> : pandangan bahwa segala sesuatu ditentukan sebab tertentu.
-</p><p>Dengan memahami ontologi, epistemologi, dan aksiologi secara seimbang, seseorang dapat memiliki cara berpikir lebih matang: memahami realitas, cara mengetahui kebenaran, serta nilai moral dalam penggunaan pengetahuan. Filsafat bukan hanya teori, tetapi latihan berpikir kritis, reflektif, dan bijak dalam kehidupan sehari-hari.</p>
-</main><footer>
-<p>© 2026 Muhammad Al fatih</p>
-</footer>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">Artikel Saya</div>
+      <div class="actions">
+        <button class="icon-btn" id="themeToggle" aria-label="Ganti mode">☾</button>
+      </div>
+    </div>
+  </header>  <main class="page">
+    <section class="card">
+      <div class="hero"></div><div class="content">
+    <div class="badge">Filsafat</div>
+
+    <h1>Epistemologi</h1>
+    <h2>dalam <em>Pursuit of Jade</em></h2>
+
+    <div class="meta">
+      <strong>MUHAMMAD ALFATIH PRATAMA</strong>
+      <span class="dot">•</span>
+      28 Maret 2026
+      <span class="dot">•</span>
+      No Comments
+      <span class="dot">•</span>
+      Filsafat
+    </div>
+
+    <div class="article">
+      <p class="author">Penulis: <strong>MUHAMMAD ALFATIH PRATAMA</strong></p>
+
+      <p class="subtitle">Makna Epistemologi dalam Drama <em>Pursuit of Jade</em></p>
+
+      <p>Dalam tradisi filsafat, epistemologi membahas syarat-syarat pengetahuan: bagaimana seseorang mengetahui sesuatu, dari mana sumber pengetahuannya, dan sejauh mana pengetahuannya dapat dibenarkan. Drama <em>Pursuit of Jade</em> menarik dibaca melalui sudut ini karena konflik utamanya tidak hanya terletak pada cinta dan kekuasaan, tetapi juga pada perebutan kebenaran.</p>
+
+      <p>Jika dibaca secara epistemologis, drama ini berubah menjadi peta besar tentang sumber pengetahuan: persepsi, memori, rasio, dan kesaksian. Setiap keputusan besar lahir dari pertanyaan mendasar: apakah informasi ini benar, apakah sumbernya dapat dipercaya, dan apakah keyakinan tokoh berdiri di atas alasan yang cukup.</p>
+
+      <p>Salah satu inti paling kuat dalam <em>Pursuit of Jade</em> adalah identitas yang disembunyikan. Ketika seseorang menyamar demi perlindungan, relasi manusia dibangun di atas pengetahuan yang timpang. Penonton sering mengetahui lebih banyak daripada tokoh tertentu, sehingga muncul jarak antara kenyataan dan apa yang diyakini para tokoh.</p>
+
+      <p>Dunia sosial dalam drama ini bergerak lewat kesaksian. Orang-orang mempercayai ucapan, gosip, laporan, dan pengakuan. Namun, kesaksian tidak pernah netral. Dalam masyarakat yang sarat intrik, rumor bisa tampak lebih kuat daripada fakta. Di sinilah drama memperlihatkan perbedaan antara pengetahuan dan keyakinan.</p>
+
+      <p>Drama ini juga menampilkan bahwa pengetahuan selalu terkait dengan kuasa. Bukti yang sama dapat menghasilkan putusan yang berbeda tergantung siapa yang menafsirkan. Orang dengan status rendah lebih mudah dicurigai, sementara pihak yang dekat dengan otoritas lebih mudah dipercaya. Karena itu, epistemologi dalam cerita ini juga menjadi persoalan etis dan politik.</p>
+
+      <p>Makna epistemologi dalam <em>Pursuit of Jade</em> terletak pada cara drama ini memperlihatkan bahwa kebenaran tidak pernah hadir secara polos. Ia harus dicari, diuji, disusun ulang, dan sering kali diperjuangkan melawan struktur sosial yang menyelewengkannya. Oleh sebab itu, drama ini layak dibaca bukan hanya sebagai hiburan, melainkan sebagai refleksi filosofis tentang manusia yang hidup di antara ketidaktahuan, keyakinan, dan hasrat akan kebenaran.</p>
+    </div>
+  </div>
+</section>
+
+  </main>
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.body.classList.add('dark');
+      themeToggle.textContent = '☀';
+    }themeToggle.addEventListener('click', function () {
+  document.body.classList.toggle('dark');
+  const isDark = document.body.classList.contains('dark');
+  themeToggle.textContent = isDark ? '☀' : '☾';
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+});
+
+  </script>
 </body>
 </html>
